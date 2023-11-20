@@ -7,7 +7,7 @@ import Vegetable.VegetableList;
 import java.util.Scanner;
 
 public class AddVegetableCommand implements Command {
-    private VegetableList vegetableList;
+    private final VegetableList vegetableList;
 
     public AddVegetableCommand(VegetableList vegetableList) {
         this.vegetableList = vegetableList;
@@ -16,23 +16,23 @@ public class AddVegetableCommand implements Command {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the details of the vegetable:");
+        System.out.println("Введіть деталі про овоч:");
 
-        System.out.println("Name:");
+        System.out.println("Назва:");
         String name = scanner.nextLine();
 
-        System.out.println("Season:");
+        System.out.println("Сезон:");
         String season = scanner.nextLine();
 
-        System.out.println("Calories per 100g:");
+        System.out.println("Калорії на 100г:");
         int caloriesPer100g = scanner.nextInt();
 
-        System.out.println("Price:");
+        System.out.println("Ціна:");
         int price = scanner.nextInt();
 
         Vegetable vegetable = new Vegetable(name, season, caloriesPer100g, price);
         vegetableList.add(vegetable);
 
-        System.out.println("Vegetable added successfully");
+        System.out.println("Овоч успішно додано");
     }
 }

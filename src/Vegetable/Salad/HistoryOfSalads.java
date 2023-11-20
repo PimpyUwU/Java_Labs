@@ -1,21 +1,41 @@
 package Vegetable.Salad;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.FileReader;
+import java.lang.reflect.Type;
 
 public class HistoryOfSalads {
     private List<Salad> salads;
 
     public HistoryOfSalads() {
-        this.salads = new ArrayList<>();
+        readFromFile();
     }
 
     public void saveToFile() {
-        // Implement the logic to save salads to a file
+        Gson gson = new Gson();
+        String json = gson.toJson(salads);
+
+        try (FileWriter writer = new FileWriter("historyOfSalads.json")) {
+            writer.write(json);
+        } catch (IOException e) {
+            System.out.println("Помилка при збереженні салатів у файл: " + e.getMessage());
+        }
     }
 
     public void readFromFile() {
-        // Implement the logic to read salads from a file
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader("historyOfSalads.json")) {
+            Type listType = new TypeToken<List<Salad>>() {
+            }.getType();
+            salads = gson.fromJson(reader, listType);
+        } catch (IOException e) {
+            this.salads = new ArrayList<>();
+        }
     }
 
     public void addSalad(Salad salad) {
@@ -23,22 +43,15 @@ public class HistoryOfSalads {
     }
 
     public void printSalads() {
-        salads.forEach(System.out::println);
+        salads.forEach(salad -> System.out.println(salad.getName()));
     }
 
-    public void showSaladDetails(int index) {
-        if (index >= 0 && index < salads.size()) {
-            System.out.println(salads.get(index));
-        } else {
-            System.out.println("Invalid index");
+    public Salad findByName(String name) {
+        for (Salad salad : salads) {
+            if (salad.getName().equals(name)) {
+                return salad;
+            }
         }
-    }
-
-    public void deleteSalad(int index) {
-        if (index >= 0 && index < salads.size()) {
-            salads.remove(index);
-        } else {
-            System.out.println("Invalid index");
-        }
+        return null;
     }
 }

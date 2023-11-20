@@ -14,10 +14,12 @@ public class MenuRunner {
         User user = new User();
 
         while (true){
-            System.out.println("1 - Список всіх овочів\n" +
-                    "2 - Приготувати салат\n" +
-                    "3 - Історія\n" +
-                    "4 - Вийти з програми\n");
+            System.out.println("""
+                    1 - Список всіх овочів
+                    2 - Приготувати салат
+                    3 - Історія
+                    4 - Вийти з програми
+                    """);
 
             switch (choseItemFromMenu()){
                 case(1):

@@ -7,7 +7,7 @@ import Vegetable.VegetableList;
 import java.util.Scanner;
 
 public class RemoveVegetableCommand implements Command {
-    private VegetableList vegetableList;
+    private final VegetableList vegetableList;
 
     public RemoveVegetableCommand(VegetableList vegetableList) {
         this.vegetableList = vegetableList;
@@ -16,7 +16,7 @@ public class RemoveVegetableCommand implements Command {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the name of the vegetable to remove:");
+        System.out.println("Введіть назву овоча, який потрібно видалити:");
 
         String name = scanner.nextLine();
         Vegetable vegetableToRemove = vegetableList.findByName(name).stream()
@@ -25,9 +25,9 @@ public class RemoveVegetableCommand implements Command {
 
         if (vegetableToRemove != null) {
             vegetableList.remove(vegetableToRemove);
-            System.out.println("Vegetable removed successfully");
+            System.out.println("Овоч успішно видалено");
         } else {
-            System.out.println("Vegetable not found");
+            System.out.println("Овоч не знайдено");
         }
     }
 }

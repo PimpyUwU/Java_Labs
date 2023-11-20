@@ -4,7 +4,7 @@ import User.Commands.Command;
 import Vegetable.VegetableList;
 
 public class SortVegetablesByCaloriesCommand implements Command {
-    private VegetableList vegetableList;
+    private final VegetableList vegetableList;
 
     public SortVegetablesByCaloriesCommand(VegetableList vegetableList) {
         this.vegetableList = vegetableList;

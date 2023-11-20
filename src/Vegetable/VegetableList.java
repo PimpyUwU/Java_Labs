@@ -1,12 +1,19 @@
 package Vegetable;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class VegetableList {
-    private final List<Vegetable> vegetables;
+    private List<Vegetable> vegetables;
 
     public VegetableList() {
         this.vegetables = new ArrayList<>();
@@ -68,7 +75,24 @@ public class VegetableList {
         vegetables.remove(vegetable);
     }
 
-    public void printAllVegetables() {
-        vegetables.forEach(System.out::println);
+    public void saveToFile() {
+        Gson gson = new Gson();
+        String json = gson.toJson(vegetables);
+
+        try (FileWriter writer = new FileWriter("vegetableList.json")) {
+            writer.write(json);
+        } catch (IOException e) {
+            System.out.println("Помилка при збереженні овочів у файл: " + e.getMessage());
+        }
+    }
+
+    public void readFromFile() {
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader("vegetableList.json")) {
+            Type listType = new TypeToken<List<Vegetable>>(){}.getType();
+            vegetables = gson.fromJson(reader, listType);
+        } catch (IOException e) {
+            System.out.println("Помилка при читанні овочів з файлу: " + e.getMessage());
+        }
     }
 }

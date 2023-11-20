@@ -2,9 +2,9 @@ package Vegetable;
 
 public class Vegetable {
     private String name;
-    private String seazon;
-    private int caloriesPer100g;
-    private int price;
+    private final String seazon;
+    private final int caloriesPer100g;
+    private final int price;
 
     public Vegetable(String name, String seazon, int caloriesPer100g, int price){
         this.name = name;
@@ -31,35 +31,14 @@ public class Vegetable {
 
     public void setName(String name){
         if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Name cannot be null or empty");
+            throw new IllegalArgumentException("Назва не може бути порожньою або null");
         }
         this.name = name;
     }
 
-    public void setSeazon(String seazon){
-        if (seazon == null || seazon.trim().isEmpty()) {
-            throw new IllegalArgumentException("Seazon cannot be null or empty");
-        }
-        this.seazon = seazon;
-    }
-
-    public void setCaloriesPer100g(int caloriesPer100g){
-        if (caloriesPer100g < 0) {
-            throw new IllegalArgumentException("Calories per 100g cannot be negative");
-        }
-        this.caloriesPer100g = caloriesPer100g;
-    }
-
-    public void setPrice(int price){
-        if (price < 0) {
-            throw new IllegalArgumentException("Price cannot be negative");
-        }
-        this.price = price;
-    }
-
     @Override
     public String toString(){
-        return "Name: " + name + " Seazon: " + seazon + " Calories per 100g: " + caloriesPer100g + " Price: " + price;
+        return "Назва: " + name + " Сезон: " + seazon + " Калорії на 100г: " + caloriesPer100g + " Ціна: " + price;
     }
 
     @Override

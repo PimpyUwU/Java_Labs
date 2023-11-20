@@ -4,8 +4,17 @@ import Vegetable.VegetableList;
 import Vegetable.Vegetable;
 
 public class Salad {
-    private VegetableList vegetables;
+    private String name;
+    private final VegetableList vegetables;
     private int caloriesPer100g;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Salad() {
         this.vegetables = new VegetableList();
@@ -27,9 +36,9 @@ public class Salad {
     }
 
     public void printSalad() {
-        System.out.println("Salad: ");
+        System.out.println("Салат: " + name);
         vegetables.sortByName().forEach(System.out::println);
-        System.out.println("Total calories per 100g: " + caloriesPer100g);
+        System.out.println("Загальна калорійність на 100г: " + caloriesPer100g);
     }
 
     public int getCaloriesPer100g() {
