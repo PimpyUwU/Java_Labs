@@ -7,9 +7,13 @@ public class Salad {
     private VegetableList vegetables;
     private int caloriesPer100g;
 
-    public Salad(VegetableList vegetables) {
-        this.vegetables = vegetables;
+    public Salad() {
+        this.vegetables = new VegetableList();
         this.caloriesPer100g = 0;
+    }
+
+    public VegetableList getVegetables() {
+        return vegetables;
     }
 
     public void updateCaloriesPer100g() {
@@ -18,13 +22,17 @@ public class Salad {
                 .sum();
     }
 
-    public void saveSaladToHistory() {
-        // Implement the logic to save the current salad to history
+    public void saveSaladToHistory(HistoryOfSalads historyOfSalads) {
+        historyOfSalads.addSalad(this);
     }
 
     public void printSalad() {
         System.out.println("Salad: ");
         vegetables.sortByName().forEach(System.out::println);
         System.out.println("Total calories per 100g: " + caloriesPer100g);
+    }
+
+    public int getCaloriesPer100g() {
+        return caloriesPer100g;
     }
 }

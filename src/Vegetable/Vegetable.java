@@ -63,11 +63,6 @@ public class Vegetable {
     }
 
     @Override
-    public int hashCode(){
-        return (name.hashCode() + seazon.hashCode() + caloriesPer100g + price);
-    }
-
-    @Override
     public boolean equals(Object obj){
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
