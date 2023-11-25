@@ -28,5 +28,7 @@
     </orderEntry>
     <orderEntry type="library" name="mockito.core" level="project" />
     <orderEntry type="library" name="bluecatcode.mockito.1.10.19.extended" level="project" />
+    <orderEntry type="library" name="apache.logging.log4j.1.2.api" level="project" />
+    <orderEntry type="library" name="apache.logging.log4j.core" level="project" />
   </component>
 </module>

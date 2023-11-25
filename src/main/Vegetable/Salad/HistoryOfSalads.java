@@ -8,9 +8,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.FileReader;
 import java.lang.reflect.Type;
+import org.apache.log4j.Logger;
 
 public class HistoryOfSalads {
     private List<Salad> salads;
+
+    // Create a Logger instance
+    final static Logger log = Logger.getLogger(HistoryOfSalads.class);
 
     public HistoryOfSalads() {
         readFromFile();
@@ -26,8 +30,9 @@ public class HistoryOfSalads {
 
         try (FileWriter writer = new FileWriter("historyOfSalads.json")) {
             writer.write(json);
+            log.info("Salads saved to file successfully");
         } catch (IOException e) {
-            System.out.println("Помилка при збереженні салатів у файл: " + e.getMessage());
+            log.error("Error while saving salads to file: " + e.getMessage());
         }
     }
 
@@ -37,8 +42,10 @@ public class HistoryOfSalads {
             Type listType = new TypeToken<List<Salad>>() {
             }.getType();
             salads = gson.fromJson(reader, listType);
+            log.info("Salads read from file successfully");
         } catch (IOException e) {
             this.salads = new ArrayList<>();
+            log.error("Error while reading salads from file: " + e.getMessage());
         }
     }
 
@@ -47,7 +54,7 @@ public class HistoryOfSalads {
     }
 
     public void printSalads() {
-        salads.forEach(salad -> System.out.println(salad.getName()));
+        salads.forEach(salad -> log.info(salad.getName()));
     }
 
     public Salad findByName(String name) {

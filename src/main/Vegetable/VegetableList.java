@@ -2,6 +2,7 @@ package main.Vegetable;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.apache.log4j.Logger;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 public class VegetableList{
     private List<Vegetable> vegetables;
+    final static Logger log = Logger.getLogger(VegetableList.class);
 
     public VegetableList() {
         this.vegetables = new ArrayList<>();
@@ -82,8 +84,9 @@ public class VegetableList{
 
         try (FileWriter writer = new FileWriter("vegetableList.json")) {
             writer.write(json);
+            log.info("Vegetables saved to file successfully");
         } catch (IOException e) {
-            System.out.println("Помилка при збереженні овочів у файл: " + e.getMessage());
+            log.error("Error while saving vegetables to file: " + e.getMessage());
         }
     }
 
@@ -92,8 +95,9 @@ public class VegetableList{
         try (FileReader reader = new FileReader("vegetableList.json")) {
             Type listType = new TypeToken<List<Vegetable>>(){}.getType();
             vegetables = gson.fromJson(reader, listType);
+            log.info("Vegetables read from file successfully");
         } catch (IOException e) {
-            System.out.println("Помилка при читанні овочів з файлу: " + e.getMessage());
+            log.error("Error while reading vegetables from file: " + e.getMessage());
         }
     }
 }

@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SaladTest {
 
-    @Mock
     private Salad salad;
 
     @Mock

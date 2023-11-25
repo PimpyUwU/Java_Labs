@@ -7,6 +7,7 @@ import main.Vegetable.Salad.HistoryOfSalads;
 import main.Vegetable.Salad.Salad;
 import main.Vegetable.VegetableList;
 import main.User.User;
+import org.apache.log4j.Logger;
 
 public class Menu {
     private final User user;
